@@ -33,6 +33,7 @@ public class FlowerController {
         if(flower == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        System.out.println(flower.getGardener());
         return new ResponseEntity<>(flower, HttpStatus.OK);
     }
 

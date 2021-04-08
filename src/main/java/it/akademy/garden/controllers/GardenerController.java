@@ -40,14 +40,27 @@ public class GardenerController {
         return new ResponseEntity<>(gardener, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}/flowers")
+    public ResponseEntity<List<Flower>> getFlowersByGardener(@PathVariable int id){
+        Gardener gardener = gardenerDao.findById(id);
+
+        if(gardener == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        List<Flower> flowers = flowerDao.findAllByGardener(gardener);
+
+        return new ResponseEntity<>(flowers, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<Gardener> createGardener(@RequestBody Gardener gardener){
         Gardener addedGardener = gardenerDao.save(gardener);
         return new ResponseEntity<>(addedGardener, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{gardenerId}")
-    public ResponseEntity<Gardener> addFlowerInGardener(@PathVariable int gardenerId, @RequestBody int flowerId){
+    @PutMapping("/{gardenerId}/flowers/{flowerId}")
+    public ResponseEntity<Gardener> addFlowerInGardener(@PathVariable int gardenerId, @PathVariable int flowerId){
         Gardener gardener = gardenerDao.findById(gardenerId);
 
         if(gardener == null){

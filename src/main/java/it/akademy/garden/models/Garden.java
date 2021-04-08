@@ -15,11 +15,11 @@ public class Garden {
 
     private String name;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "garden-gardeners")
     @OneToMany
     private List<Gardener> gardeners;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "flower-garden")
     @OneToMany
     private List<Flower> flowers;
 

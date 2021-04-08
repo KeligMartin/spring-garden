@@ -7,16 +7,13 @@ import it.akademy.garden.models.Garden;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
 @RestController
-@RequestMapping("/gardens")
+@RequestMapping("/gardenax")
 public class GardenController {
 
     private final GardenDao gardenDao;
@@ -49,5 +46,11 @@ public class GardenController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(garden, HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<Garden> addGarden(@RequestBody Garden garden){
+        Garden addedGarden = gardenDao.save(garden);
+        return new ResponseEntity<>(addedGarden, HttpStatus.CREATED);
     }
 }

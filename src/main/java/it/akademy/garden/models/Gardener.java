@@ -18,11 +18,11 @@ public class Gardener {
 
     private String firstName;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "flower-gardener")
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Flower> flowers;
 
-    @JsonBackReference
+    @JsonBackReference(value = "garden-gardeners")
     @ManyToOne
     private Garden garden;
 

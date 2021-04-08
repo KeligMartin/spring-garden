@@ -14,11 +14,11 @@ public class Flower {
 
     private String name;
 
-    @JsonBackReference
+    @JsonBackReference(value = "flower-gardener")
     @ManyToOne
     private Gardener gardener;
 
-    @JsonBackReference
+    @JsonBackReference(value = "flower-garden")
     @ManyToOne
     private Garden garden;
 

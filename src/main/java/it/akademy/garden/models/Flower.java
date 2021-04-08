@@ -18,6 +18,10 @@ public class Flower {
     @ManyToOne
     private Gardener gardener;
 
+    @JsonBackReference
+    @ManyToOne
+    private Garden garden;
+
     public Flower(){}
 
     public Flower(int id, String name){

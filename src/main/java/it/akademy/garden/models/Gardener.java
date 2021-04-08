@@ -1,5 +1,6 @@
 package it.akademy.garden.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -20,6 +21,10 @@ public class Gardener {
     @JsonManagedReference
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Flower> flowers;
+
+    @JsonBackReference
+    @ManyToOne
+    private Garden garden;
 
     public Gardener(){}
 

@@ -18,7 +18,7 @@ public class Gardener {
     private String firstName;
 
     @JsonManagedReference
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Flower> flowers;
 
     public Gardener(){}

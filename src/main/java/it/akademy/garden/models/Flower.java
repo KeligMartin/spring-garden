@@ -1,7 +1,10 @@
 package it.akademy.garden.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Flower {
@@ -10,6 +13,10 @@ public class Flower {
     private int id;
 
     private String name;
+
+    @JsonBackReference
+    @ManyToOne
+    private Gardener gardener;
 
     public Flower(){}
 
@@ -32,5 +39,13 @@ public class Flower {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Gardener getGardener() {
+        return gardener;
+    }
+
+    public void setGardener(Gardener gardener) {
+        this.gardener = gardener;
     }
 }

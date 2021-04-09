@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -25,8 +26,13 @@ public class GardenerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Gardener>> getAllGardeners(){
-        List<Gardener> gardeners = gardenerDao.findAll();
+    public ResponseEntity<List<Gardener>> getAllGardeners(@RequestParam(required = false) String name){
+        List<Gardener> gardeners;
+        if(name == null){
+            gardeners = gardenerDao.findAll();
+            return new ResponseEntity<>(gardeners, HttpStatus.OK);
+        }
+        gardeners = gardenerDao.findAllByName(name);
         return new ResponseEntity<>(gardeners, HttpStatus.OK);
     }
 

@@ -12,6 +12,8 @@ public interface GardenerDao extends JpaRepository<Gardener, Integer> {
 
     Gardener findById(int id);
 
+    List<Gardener> findAllByName(String name);
+
     Gardener save(Gardener gardener);
 
     void deleteById(int id);
